@@ -15,6 +15,7 @@
 #include "d/snd/d_snd_small_effect_mgr.h"
 #include "d/snd/d_snd_source_mgr.h"
 #include "d/snd/d_snd_stage_data.h"
+#include "d/snd/d_snd_stage_reverb.h"
 #include "d/snd/d_snd_util.h"
 #include "d/snd/d_snd_wzsound.h"
 #include "d/t/d_t_sound_area_mgr.h"
@@ -85,13 +86,11 @@ dSndStateMgr_c::dSndStateMgr_c()
       field_0x4A8(0),
       mNeedsGroupsReload(false) {}
 
-extern "C" void fn_803665B0(nw4r::snd::detail::FxReverbStdParam &, int);
-
 void dSndStateMgr_c::setup(EGG::Heap *pHeap) {
     u32 max = 0;
     for (int i = 0; i < 5; i++) {
         nw4r::snd::detail::FxReverbStdParam param;
-        fn_803665B0(param, i);
+        getStageReverbParam(param, i);
         mFx.SetParam(param);
         u32 thisSize = mFx.GetRequiredMemSize();
         if (max < thisSize) {
