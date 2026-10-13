@@ -18,6 +18,9 @@ public:
     virtual void vt_0x88();
     virtual void vt_0x8C();
 
+    /// @brief Iterates over all doors. Pass nullptr to get the first door.
+    static dAcObjDoor_c *getNextDoor(dAcObjDoor_c *door);
+
 protected:
     dAcRef_c<dAcObjDoor_c> mDoorRef;
 
