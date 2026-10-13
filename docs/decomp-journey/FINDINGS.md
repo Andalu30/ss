@@ -1,6 +1,6 @@
 # Findings
 
-Technical results of the three decompilation exercises, written down so they don't get lost. The code lives on the branches `shutter-fence-forbiddance` → `ship-flood` → `stage-reverb` (stacked, in that order). See `QUICKSTART.md` sections 4–6 for the step-by-step process.
+Technical results of the three decompilation exercises, written down so they don't get lost. The code lives on three independent branches, each based directly on `main`: `shutter-fence-forbiddance`, `ship-flood` and `stage-reverb`. See `QUICKSTART.md` sections 4–6 for the step-by-step process.
 
 All results are against `SOUE01` revision 0. Every commit was built and checked: `ninja` passes, and `build.sha1` reports 637 × OK.
 

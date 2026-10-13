@@ -14,9 +14,9 @@ For the background (why decompilation works, Twilight Princess and Dusklight, re
 | Your disc (`SOUE01.wbfs`) | USA **revision 0**, the exact version the project needs ✅ |
 | `ss/orig/SOUE01/sys/main.dol` + `files/rels.arc` | Extracted from your disc |
 | Build output | **All 637 files rebuilt byte-for-byte identical** to your disc (1 main program + 636 modules) ✅ |
-| Branch `shutter-fence-forbiddance` in `ss/` | The worked example from section 4: one new function decompiled, linked and verified (uncommitted) |
-| Branch `ship-flood` in `ss/` | The worked example from section 5: a whole actor decompiled to 99.89% (stacked on the branch above, uncommitted) |
-| Branch `stage-reverb` in `ss/` | The worked example from section 6: an untouched file decompiled from 0% to 100% and linked (stacked on the branch above, uncommitted) |
+| Branch `shutter-fence-forbiddance` in `ss/` | The worked example from section 4: one new function decompiled, linked and verified (its own branch off `main`, on the fork) |
+| Branch `ship-flood` in `ss/` | The worked example from section 5: a whole actor decompiled to 99.89% (its own branch off `main`, on the fork) |
+| Branch `stage-reverb` in `ss/` | The worked example from section 6: an untouched file decompiled from 0% to 100% and linked (its own branch off `main`, on the fork) |
 | `objdiff` (the diff GUI) | Installed at `~/.local/bin/objdiff` (v3.8.2) |
 | `ss/objdiff.json` | Generated, so objdiff will configure itself |
 
@@ -365,7 +365,7 @@ The near-100% ones are close because someone got stuck on the last details, so t
 
 ## 5. Worked example 2: decompiling a whole actor (`d_t_ship_flood`)
 
-The first example was one 96-byte function. This one is a **complete actor**: 8 unknown functions (about 1.8 KB of code), a class layout nobody had mapped, two other actors to research, matrix and trigonometry math, cutscene events and controller rumble. It's on the branch `ship-flood` (stacked on `shutter-fence-forbiddance`, uncommitted).
+The first example was one 96-byte function. This one is a **complete actor**: 8 unknown functions (about 1.8 KB of code), a class layout nobody had mapped, two other actors to research, matrix and trigonometry math, cutscene events and controller rumble. It's on the branch `ship-flood`, branched directly off `main`.
 
 **Result: 54.65% → 99.89%.** 38 of 39 functions are byte-identical and all data matches. The last function is at 99.26%, held back by a single register copy. The full game still rebuilds identically (637 × OK). The file stays `NonMatching` until that last instruction is solved. The final part of this section explains why that's a normal outcome.
 
@@ -586,7 +586,7 @@ The work is still fully useful:
 
 The first two examples had help: a header that already existed, a `TODO` pointing the way, a matched sibling to copy from. This one has **none of that**. The challenge was: *pick code that is completely new, with nothing that looks like it and nothing to base the work on.*
 
-**Result: 0% → 100%, linked.** Six functions decompiled from nothing, the file marked `Matching`, the whole game still byte-identical (637 × OK). Along the way the code turned out to be **how Skyward Sword picks the echo (reverb) for each area**. Branch `stage-reverb`, stacked on `ship-flood`, uncommitted.
+**Result: 0% → 100%, linked.** Six functions decompiled from nothing, the file marked `Matching`, the whole game still byte-identical (637 × OK). Along the way the code turned out to be **how Skyward Sword picks the echo (reverb) for each area**. Branch `stage-reverb`, branched directly off `main`.
 
 ### Step 0 — Choosing a truly untouched target
 
